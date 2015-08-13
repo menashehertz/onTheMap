@@ -1,0 +1,77 @@
+//
+//  AllMapLocations.swift
+//  PinSample
+//
+//  Created by Steven Hertz on 7/31/15.
+//  Copyright (c) 2015 Udacity. All rights reserved.
+//
+
+import Foundation
+import UIKit
+
+
+class AllMapLocations {
+  static let oneSession = AllMapLocations()
+  var resultMapLocations = [[String : AnyObject]]()
+  var testPassedInfo = "passed info"
+  
+  func printLogin() {
+    println("my login is")
+  }
+
+  func getAllMapLocations(loadScreen : () -> Void, myStoryBoard : UIStoryboard, myViewController : UIViewController  ) {
+    println("starting func get locations. . .")
+
+    let request = NSMutableURLRequest(URL: NSURL(string: "https://api.parse.com/1/classes/StudentLocation")!)
+    request.addValue("QrX47CA9cyuGewLdsL7o5Eb8iug6Em8ye0dnAbIr", forHTTPHeaderField: "X-Parse-Application-Id")
+    request.addValue("QuWThTdiRmTux3YaDseUSEpUKo7aBYM737yKd4gY", forHTTPHeaderField: "X-Parse-REST-API-Key")
+    let session = NSURLSession.sharedSession()
+    let task = session.dataTaskWithRequest(request) { data, response, error in
+      if error != nil { // Handle error...
+        println("error")
+        return
+      }
+      var parsingError: NSError? = nil
+      let parsedResult = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.AllowFragments, error: &parsingError) as! NSDictionary
+      if let dict = parsedResult["results"] as? [NSDictionary] {
+        self.resultMapLocations = dict as! [[String : AnyObject]]
+        AllMapLocations.oneSession.resultMapLocations = dict as! [[String : AnyObject]]
+        println("number is \(dict.count)")
+        let xx : String
+        for dictEach in dict {
+          if let lastName = dictEach.objectForKey("lastName") as? String {
+//            println(lastName)
+//            self.myMapLocation = MapLocation(mapDict: dictEach as! [String : AnyObject])
+//            println(self.myMapLocation!.mediaURL!)
+//            self.arrayMapLocations.append(self.myMapLocation!)
+//            println("append done")
+          }
+        }
+        println("finished for loop")
+        //loadScreen()
+        
+        if myViewController is UdacityLoginViewController {
+          println("it is udacity****************************************")
+          ScreenHelp.gotoMyNextScreen(myStoryBoard, myViewController: myViewController)
+        }
+        
+        if myViewController is ViewController {
+          println("it is no udacity****************************************")
+          if let vc = myViewController as? ViewController {
+            vc.loadLocations()
+          }
+        }
+        
+
+
+        
+        
+      }
+      
+      //println(NSString(data: data, encoding: NSUTF8StringEncoding))
+    }
+    task.resume()
+  }
+
+  
+}
