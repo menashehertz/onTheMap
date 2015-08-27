@@ -21,7 +21,7 @@ import MapKit
 * respond when the "info" button is tapped.
 */
 
-class ViewController: UIViewController, MKMapViewDelegate {
+class MapViewController: UIViewController, MKMapViewDelegate {
   
   // The map. See the setup in the Storyboard file. Note particularly that the view controller
   // is set up as the map view's delegate.

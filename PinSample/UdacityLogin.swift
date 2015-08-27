@@ -33,7 +33,7 @@ class UdacityLogin {
                 // completionHandler(success: true, errorString: "No error")
                    AllMapLocations.oneSession.getAllMapLocationsNew()  { (success, errorString) in
                     if success {
-                        completionHandler(success: true, errorString: "No error")
+                        completionHandler(success: true, errorString: "From loginController  " + errorString)
                     } else {
                         completionHandler(success: false, errorString: errorString)
                     }
@@ -44,6 +44,10 @@ class UdacityLogin {
         }
     }
 
+    /*
+    Logs in to Udacity
+    Takes a closure to will do another step if the login is complete
+    */
     func loginToUdacity(userId: String, passWord: String, completionHandler: (success: Bool, errorString: String) -> Void) {
         println("button clicked from udacity class")
         
@@ -143,14 +147,14 @@ class UdacityLogin {
         return "error"
     }
     
-    func performAdd() {
-        println("my login is")
-    }
-    
-    func stubLoad() {
-        // ScreenHelp.gotoMyNextScreen(self.storyboard!, myViewController: self)
-    }
-    
+//    func performAdd() {
+//        println("my login is")
+//    }
+//    
+//    func stubLoad() {
+//        // ScreenHelp.gotoMyNextScreen(self.storyboard!, myViewController: self)
+//    }
+//    
     
     
     /*
