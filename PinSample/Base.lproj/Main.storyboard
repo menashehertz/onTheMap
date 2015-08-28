@@ -89,24 +89,6 @@
             </objects>
             <point key="canvasLocation" x="62.399999999999999" y="1337.6399999999999"/>
         </scene>
-        <!--Add Location View Controller-->
-        <scene sceneID="XGm-55-cBn">
-            <objects>
-                <viewController storyboardIdentifier="addLocation" id="7IL-ak-wkU" customClass="AddLocationViewController" customModule="PinSample" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="oiD-2E-9VP"/>
-                        <viewControllerLayoutGuide type="bottom" id="gcN-j7-kPD"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="RQ9-91-el7">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="yri-rw-49w" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="956" y="1373"/>
-        </scene>
         <!--Udacity Login View Controller-->
         <scene sceneID="trJ-oa-QCm">
             <objects>
@@ -183,10 +165,10 @@
             </objects>
             <point key="canvasLocation" x="-361.06666666666666" y="1337.6399999999999"/>
         </scene>
-        <!--Tab Bar View Controller-->
+        <!--Tab Bar Controller-->
         <scene sceneID="n8j-mP-Hb1">
             <objects>
-                <tabBarController storyboardIdentifier="tabbar" automaticallyAdjustsScrollViewInsets="NO" id="1qS-y3-2NB" customClass="TabBarViewController" customModule="PinSample" customModuleProvider="target" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="tabbar" automaticallyAdjustsScrollViewInsets="NO" id="1qS-y3-2NB" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="P2Y-hb-Rvz"/>
                     <nil key="simulatedBottomBarMetrics"/>
@@ -206,7 +188,7 @@
         <!--WhereStudying-->
         <scene sceneID="nal-rr-IhA">
             <objects>
-                <viewController storyboardIdentifier="doublescreen" title="WhereStudying" id="Oql-mD-Fsa" customClass="DoubleScreenViewController" customModule="PinSample" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="addLocation" title="WhereStudying" id="Oql-mD-Fsa" customClass="AddLocationViewController" customModule="PinSample" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Fzy-Bc-4SQ"/>
                         <viewControllerLayoutGuide type="bottom" id="5X1-HV-Zy0"/>
@@ -309,6 +291,9 @@
                                             <constraint firstAttribute="centerX" secondItem="jcp-yl-zOX" secondAttribute="centerX" id="fcE-zY-ucg"/>
                                         </constraints>
                                     </view>
+                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="x9e-4K-CoJ">
+                                        <rect key="frame" x="150" y="274" width="20" height="20"/>
+                                    </activityIndicatorView>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -420,6 +405,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="activityInd" destination="x9e-4K-CoJ" id="N9u-mr-Rjk"/>
                         <outlet property="address" destination="rVY-Na-emb" id="HfF-rm-KL3"/>
                         <outlet property="linkText" destination="3TD-h9-hxg" id="Qxo-rK-wWX"/>
                         <outlet property="map" destination="JnB-e0-29H" id="LfW-Sc-cWK"/>

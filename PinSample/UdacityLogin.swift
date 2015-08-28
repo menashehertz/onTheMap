@@ -12,6 +12,7 @@ import Foundation
 class UdacityLogin {
     static let oneSession = UdacityLogin()
     
+    var myUdacityUser : UdacityUser!
     /* Literals needed to login*/
     let baseURLSecureStringLit = "https://www.udacity.com/api/session"
     let rootLoginDictLit = "udacity"
@@ -19,6 +20,9 @@ class UdacityLogin {
     let passwordLit = "password"
 
     var counter = 0
+    
+    var tester = ""
+
 
     /* Main Process Functions */
     
@@ -28,27 +32,40 @@ class UdacityLogin {
     - and if succesful gets the location data from Parse
     */
     func loginController(userId: String, passWord: String, completionHandler: (success: Bool, errorString: String) -> Void) {
-        self.loginToUdacity(userId, passWord: passWord)  { (success, errorString) in
+        
+        self.loginToUdacity(userId, passWord: passWord)  { (success, errorString, studentKey) in
+
             if success {
-                // completionHandler(success: true, errorString: "No error")
-                   AllMapLocations.oneSession.getAllMapLocationsNew()  { (success, errorString) in
+           
+                self.getUdacityStudentData(studentKey) { (success, errorString) in
+                
                     if success {
-                        completionHandler(success: true, errorString: "From loginController  " + errorString)
+
+                        AllMapLocations.oneSession.getAllMapLocationsNew() { (success, errorString) in
+                        
+                            if success {
+                                completionHandler(success: true, errorString: "From loginController  " + errorString)
+                            } else {
+                                completionHandler(success: false, errorString: errorString)
+                            }
+                        }
                     } else {
-                        completionHandler(success: false, errorString: errorString)
+                         completionHandler(success: false, errorString: errorString)
                     }
-                 }
+                }
             } else {
                 completionHandler(success: false, errorString: errorString)
             }
         }
     }
 
-    /*
+
+    
+        /*
     Logs in to Udacity
     Takes a closure to will do another step if the login is complete
     */
-    func loginToUdacity(userId: String, passWord: String, completionHandler: (success: Bool, errorString: String) -> Void) {
+    func loginToUdacity(userId: String, passWord: String, completionHandler: (success: Bool, errorString: String, studentKey: String) -> Void) {
         println("button clicked from udacity class")
         
         // a dictionary whos first key "udacity" contains other dictionaries
@@ -97,23 +114,25 @@ class UdacityLogin {
                         let registered = dict["registered"] as! Bool
                         if registered {
                             println("registered - succesfully logged into Udacity, next step is to login to parse and get the map locations")
-                            var myUlogin = UdacityUser(dict: parsedResult as! [String:[String:AnyObject]])
-                            println("registered \(myUlogin.account.key)")
-                            completionHandler(success: true, errorString: "No error")
+                            UdacityUser.oneSession.populatewithDict(parsedResult as! [String:[String:AnyObject]])
+                            // self.myUdacityUser = UdacityUser(dict: parsedResult as! [String:[String:AnyObject]])
+                            println("registered from singleton \(UdacityUser.oneSession.account.key)")
+                            completionHandler(success: true, errorString: "No error", studentKey: UdacityUser.oneSession.account.key)
+                            self.tester = UdacityUser.oneSession.account.key
                         }
                         else {
                             println("didn't have the key registerd in the dictionary - Not valid credentials")
-                            completionHandler(success: false, errorString: "didn't have the key registerd in the dictionary - Not valid credentials")
+                            completionHandler(success: false, errorString: "didn't have the key registerd in the dictionary - Not valid credentials" , studentKey: "")
                         }
                     }
                     else {
                         if let errorDict = parsedResult as? [String : AnyObject] {
                             let errorText: AnyObject? = errorDict["error"]
                             println("in dict didn't have the KEY account in the dictionary" )
-                            completionHandler(success: false, errorString: errorText! as! String)
+                            completionHandler(success: false, errorString: errorText! as! String , studentKey: "")
                         } else {
                             println("not in dict didn't have the KEY account in the dictionary" )
-                            completionHandler(success: false, errorString: "didn't have the KEY account in the dictionary")
+                            completionHandler(success: false, errorString: "didn't have the KEY account in the dictionary" , studentKey: "")
                         }
                         //dispatch_async(dispatch_get_main_queue()) {
                             //            self.checkButton()
@@ -127,6 +146,44 @@ class UdacityLogin {
         task.resume()
     }
     
+    func getUdacityStudentData(studentKey: String, completionHandler: (success: Bool, errorString: String) -> Void)  {
+        let strUrl = "https://www.udacity.com/api/users" + "/" + studentKey
+        let request = NSMutableURLRequest(URL: NSURL(string: strUrl )!)
+        let session = NSURLSession.sharedSession()
+        let task = session.dataTaskWithRequest(request) { data, response, error in
+            if error != nil { // Handle error...
+                println("error in getting user data")
+                return
+            }
+            let newData = data.subdataWithRange(NSMakeRange(5, data.length - 5)) /* subset response data! */
+            //println(NSString(data: newData, encoding: NSUTF8StringEncoding))
+            println("got user data")
+            
+            
+            var parsingError: NSError? = nil
+            let parsedResult = NSJSONSerialization.JSONObjectWithData(newData, options: NSJSONReadingOptions.AllowFragments, error: &parsingError) as! NSDictionary
+            if let errorParsing = parsingError {
+                println("Could not parse the result: \(errorParsing)")
+            }
+            else {
+                if let dict = parsedResult["user"] as? [String : AnyObject] {
+                    let lastName = dict["last_name"] as! String
+                    UdacityUser.oneSession.lastName = lastName
+                    let firstName = dict["first_name"] as! String
+                    UdacityUser.oneSession.firstName = firstName
+                    println(lastName + "Udacity User")
+                }
+                completionHandler(success: true, errorString: "No error")
+            }
+        
+        
+            
+            
+            
+        }
+        task.resume()
+
+    }
 
     /* Helper Functions */
 

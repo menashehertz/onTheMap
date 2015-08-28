@@ -20,12 +20,33 @@ struct Session {
 }
 
 class UdacityUser {
+    static let oneSession = UdacityUser()
+
     var account: Account
     var session: Session
+    var firstName: String
+    var lastName: String
     
     init(dict :[String:[String:AnyObject]] ) {
         self.account = Account(registered: dict["account"]!["registered"] as! Bool, key: dict["account"]!["key"] as! String)
         self.session = Session(id: dict["session"]!["id"] as! String, expiration: dict["session"]!["expiration"]  as! String)
+        self.firstName = ""
+        self.lastName = ""
+    }
+
+    func populatewithDict(dict :[String:[String:AnyObject]] ) {
+        UdacityUser.oneSession.account = Account(registered: dict["account"]!["registered"] as! Bool, key: dict["account"]!["key"] as! String)
+        UdacityUser.oneSession.session = Session(id: dict["session"]!["id"] as! String, expiration: dict["session"]!["expiration"]  as! String)
+        UdacityUser.oneSession.firstName = ""
+        UdacityUser.oneSession.lastName = ""
+       
+    }
+
+    init() {
+        self.account = Account(registered: false, key: "")
+        self.session = Session(id: "", expiration: "" )
+        self.firstName = ""
+        self.lastName = ""
     }
     //    init(registered: Bool, key: String, id: String, expiration: String ) {
     //        self.account = Account(registered: registered, key: key)

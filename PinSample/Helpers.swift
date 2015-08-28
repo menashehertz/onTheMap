@@ -11,12 +11,12 @@ import UIKit
 class Helpers: NSObject {
   func performGo(storyBoard: UIStoryboard, viewController: UIViewController){
     println("from helper")
-    var vc: DoubleScreenViewController = storyBoard.instantiateViewControllerWithIdentifier("doublescreen") as! DoubleScreenViewController
+    var vc: AddLocationViewController = storyBoard.instantiateViewControllerWithIdentifier("addLocation") as! AddLocationViewController
     viewController.presentViewController(vc, animated: true, completion: nil)
   }
   func addButtons(storyBoard: UIStoryboard, viewController: UIViewController){
     println("from helper")
-    var vc: DoubleScreenViewController = storyBoard.instantiateViewControllerWithIdentifier("doublescreen") as! DoubleScreenViewController
+    var vc: AddLocationViewController = storyBoard.instantiateViewControllerWithIdentifier("addLocation") as! AddLocationViewController
     viewController.presentViewController(vc, animated: true, completion: nil)
   }
 

@@ -10,49 +10,23 @@ import UIKit
 import AVFoundation
 
 class UdacityLoginViewController: UIViewController {
-  
-  @IBOutlet weak var userText: UITextField!
-  
-  @IBOutlet weak var passWordText: UITextField!
-  
-  @IBOutlet weak var testLabel: UILabel!
-  
-  
-  var myMapLocation : MapLocation?
-  var arrayMapLocations = [MapLocation]()
-  var resultMapLocations = [[String : AnyObject]]()
-  
+    
+    @IBOutlet weak var userText: UITextField!
+    @IBOutlet weak var passWordText: UITextField!
+    @IBOutlet weak var testLabel: UILabel!
+    
+    // var myMapLocation : MapLocation?
+    // var arrayMapLocations = [MapLocation]()
+    // var resultMapLocations = [[String : AnyObject]]()
+    
 
-  
-  let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-  let session = NSURLSession.sharedSession()
-  
-  var loginDicx = [UdacityLogin.oneSession.rootLoginDictLit: [:]] // a dictionary whos first key Udacity contains other dictionaries
-  
-  var alertController : UIAlertController?
-  
-  
-  func convertToJson(objectToConvert : AnyObject) -> NSString? {
-    if NSJSONSerialization.isValidJSONObject(objectToConvert) {
-      if let theJSONData = NSJSONSerialization.dataWithJSONObject(objectToConvert, options: NSJSONWritingOptions(0), error: nil) {
-        if let theJSONStr = NSString(data: theJSONData, encoding: NSASCIIStringEncoding) {
-          return theJSONStr
-        }
-      }
-    }
-    return "error"
-  }
-  
-  @IBAction func checkButton() {
-    alertController = UIAlertController(title: "Title", message: "Message", preferredStyle: .Alert)
-    let action = UIAlertAction(title: "Done", style: UIAlertActionStyle.Default, handler: {(paramAction:UIAlertAction!) in println("The Done button was tapped")})
+    let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+    let session = NSURLSession.sharedSession()
+//    var loginDicx = [UdacityLogin.oneSession.rootLoginDictLit: [:]] // a dictionary whos first key Udacity contains other dictionaries
+//    var alertController : UIAlertController?
     
-    alertController!.addAction(action)
     
-    self.presentViewController(alertController!, animated: true, completion: nil)
-  }
-    
-  // Mark: Login Button
+    // Mark: Login Button
     @IBAction func loginButton(sender: AnyObject) {
         println("button clicked")
         UdacityLogin.oneSession.loginController(userText.text, passWord: passWordText.text) { (success, errorString) in
@@ -64,25 +38,25 @@ class UdacityLoginViewController: UIViewController {
             }
         }
     }
-  
-  override func viewDidLoad() {
-    super.viewDidLoad()
-    testLabel.text = AllMapLocations.oneSession.testPassedInfo
-  }
-  
-  /* Functions */
-  
-  func gotoNextScreen() {
-    println("in gotoNextScreen")
-    dispatch_async(dispatch_get_main_queue()) {
-      var controller : UITabBarController
-      controller = self.storyboard?.instantiateViewControllerWithIdentifier("tabbar") as! UITabBarController
-      self.presentViewController(controller, animated: true, completion: nil)
-//      var controller : UINavigationController
-//      controller = self.storyboard?.instantiateViewControllerWithIdentifier("navctrl") as! UINavigationController
-//      self.presentViewController(controller, animated: true, completion: nil)
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        testLabel.text = AllMapLocations.oneSession.testPassedInfo
     }
-  }
+    
+    /* Functions */
+    
+    func gotoNextScreen() {
+        println("in gotoNextScreen")
+        dispatch_async(dispatch_get_main_queue()) {
+            var controller : UITabBarController
+            controller = self.storyboard?.instantiateViewControllerWithIdentifier("tabbar") as! UITabBarController
+            self.presentViewController(controller, animated: true, completion: nil)
+            //      var controller : UINavigationController
+            //      controller = self.storyboard?.instantiateViewControllerWithIdentifier("navctrl") as! UINavigationController
+            //      self.presentViewController(controller, animated: true, completion: nil)
+        }
+    }
     
     func displayError(errorString: String?) {
         if let errorString = errorString {
@@ -94,7 +68,7 @@ class UdacityLoginViewController: UIViewController {
                 alertController.addAction(action)
                 
                 self.presentViewController(alertController, animated: true, completion: nil)
-
+                
             }
         }
     }
