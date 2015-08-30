@@ -24,10 +24,8 @@ class UdacityLoginViewController: UIViewController {
 
     // Mark: Login Button
     @IBAction func loginButton(sender: AnyObject) {
-        println("button clicked")
         UdacityLogin.oneSession.loginController(userText.text, passWord: passWordText.text) { (success, errorString) in
             if success {
-                println("****" + errorString)
                 self.gotoNextScreen()
             } else {
                 self.displayError(errorString)
@@ -39,7 +37,6 @@ class UdacityLoginViewController: UIViewController {
     /* Functions */
     
     func gotoNextScreen() {
-        println("in gotoNextScreen")
         dispatch_async(dispatch_get_main_queue()) {
             var controller : UITabBarController
             controller = self.storyboard?.instantiateViewControllerWithIdentifier("tabbar") as! UITabBarController
@@ -52,7 +49,6 @@ class UdacityLoginViewController: UIViewController {
     
     func displayError(errorString: String?) {
         if let errorString = errorString {
-            println("it is an error " + errorString)
             dispatch_async(dispatch_get_main_queue()) {
                 let alertController = UIAlertController(title: "Error", message: errorString, preferredStyle: .Alert)
                 let action = UIAlertAction(title: "Done", style: UIAlertActionStyle.Default, handler: {(paramAction:UIAlertAction!) in println("The Done button was tapped - " + paramAction.title)})

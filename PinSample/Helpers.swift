@@ -9,16 +9,24 @@
 import Foundation
 import UIKit
 class Helpers: NSObject {
-  func performGo(storyBoard: UIStoryboard, viewController: UIViewController){
-    println("from helper")
-    var vc: AddLocationViewController = storyBoard.instantiateViewControllerWithIdentifier("addLocation") as! AddLocationViewController
-    viewController.presentViewController(vc, animated: true, completion: nil)
-  }
-  func addButtons(storyBoard: UIStoryboard, viewController: UIViewController){
-    println("from helper")
-    var vc: AddLocationViewController = storyBoard.instantiateViewControllerWithIdentifier("addLocation") as! AddLocationViewController
-    viewController.presentViewController(vc, animated: true, completion: nil)
-  }
-
+    func performGo(storyBoard: UIStoryboard, viewController: UIViewController){
+        var vc: AddLocationViewController = storyBoard.instantiateViewControllerWithIdentifier("addLocation") as! AddLocationViewController
+        viewController.presentViewController(vc, animated: true, completion: nil)
+    }
+    func addButtons(storyBoard: UIStoryboard, viewController: UIViewController){
+        var vc: AddLocationViewController = storyBoard.instantiateViewControllerWithIdentifier("addLocation") as! AddLocationViewController
+        viewController.presentViewController(vc, animated: true, completion: nil)
+    }
+    func loadNavBar(myStoryBoard : UIStoryboard, myViewController : UIViewController)  {
+        // do the right buttons
+        let firstButton = UIBarButtonItem(barButtonSystemItem: .Refresh, target: myViewController, action: "performRefresh")
+        let btnImg = UIImage(named: "pin")
+        let secondButton = UIBarButtonItem(image: btnImg, style: .Plain, target: myViewController, action: "performAdd")
+        myViewController.navigationItem.rightBarButtonItems = [firstButton, secondButton]
+        // do the left button
+        myViewController.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Logout", style: .Plain, target: myViewController, action: "performLeave")
+        // do the title
+        myViewController.navigationItem.title = "On the Map"
+    }
 }
 

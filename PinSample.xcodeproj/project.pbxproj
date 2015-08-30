@@ -12,11 +12,8 @@
 		4647E2941B6BC35C00CD8481 /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4647E2931B6BC35C00CD8481 /* ListViewController.swift */; };
 		466402D01B8CC1F90025FF0D /* UdacityUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 466402CF1B8CC1F90025FF0D /* UdacityUser.swift */; };
 		466ED59E1B6E90E3008049C9 /* LocationListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 466ED59D1B6E90E3008049C9 /* LocationListViewController.swift */; };
-		46A90F9D1B7B849D00755DCF /* screenHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46A90F9C1B7B849D00755DCF /* screenHelper.swift */; };
-		46A90F9F1B7B85DC00755DCF /* ScreenHelp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46A90F9E1B7B85DC00755DCF /* ScreenHelp.swift */; };
 		46ADA5DF1B67CBAA0077D01D /* UdacityLogin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46ADA5DE1B67CBAA0077D01D /* UdacityLogin.swift */; };
 		46ADA5E11B67CCBF0077D01D /* UdacityLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46ADA5E01B67CCBF0077D01D /* UdacityLoginViewController.swift */; };
-		46CE50861B6A948500F68371 /* MapLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46CE50851B6A948500F68371 /* MapLocation.swift */; };
 		46D2C46A1B90F1DF00C39F91 /* StudentInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46D2C4691B90F1DF00C39F91 /* StudentInformation.swift */; };
 		46E1D7B91B78D3C40082D8A0 /* AddLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46E1D7B81B78D3C40082D8A0 /* AddLocationViewController.swift */; };
 		4DFABCE81AC0CBAC00D21C43 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DFABCE71AC0CBAC00D21C43 /* AppDelegate.swift */; };
@@ -43,11 +40,8 @@
 		4647E2931B6BC35C00CD8481 /* ListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
 		466402CF1B8CC1F90025FF0D /* UdacityUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UdacityUser.swift; sourceTree = "<group>"; };
 		466ED59D1B6E90E3008049C9 /* LocationListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationListViewController.swift; sourceTree = "<group>"; };
-		46A90F9C1B7B849D00755DCF /* screenHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = screenHelper.swift; sourceTree = "<group>"; };
-		46A90F9E1B7B85DC00755DCF /* ScreenHelp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScreenHelp.swift; sourceTree = "<group>"; };
 		46ADA5DE1B67CBAA0077D01D /* UdacityLogin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UdacityLogin.swift; sourceTree = "<group>"; };
 		46ADA5E01B67CCBF0077D01D /* UdacityLoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UdacityLoginViewController.swift; sourceTree = "<group>"; };
-		46CE50851B6A948500F68371 /* MapLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapLocation.swift; sourceTree = "<group>"; };
 		46D2C4691B90F1DF00C39F91 /* StudentInformation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentInformation.swift; sourceTree = "<group>"; };
 		46E1D7B81B78D3C40082D8A0 /* AddLocationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddLocationViewController.swift; sourceTree = "<group>"; };
 		4DFABCE21AC0CBAC00D21C43 /* PinSample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PinSample.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -86,10 +80,7 @@
 				4647E2911B6BBF5700CD8481 /* AllMapLocations.swift */,
 				46ADA5DE1B67CBAA0077D01D /* UdacityLogin.swift */,
 				466402CF1B8CC1F90025FF0D /* UdacityUser.swift */,
-				46A90F9E1B7B85DC00755DCF /* ScreenHelp.swift */,
 				461338061B73820D00F4CB7F /* Helpers.swift */,
-				46CE50851B6A948500F68371 /* MapLocation.swift */,
-				46A90F9C1B7B849D00755DCF /* screenHelper.swift */,
 				46D2C4691B90F1DF00C39F91 /* StudentInformation.swift */,
 			);
 			name = objects;
@@ -282,8 +273,6 @@
 			files = (
 				46D2C46A1B90F1DF00C39F91 /* StudentInformation.swift in Sources */,
 				46ADA5E11B67CCBF0077D01D /* UdacityLoginViewController.swift in Sources */,
-				46CE50861B6A948500F68371 /* MapLocation.swift in Sources */,
-				46A90F9F1B7B85DC00755DCF /* ScreenHelp.swift in Sources */,
 				4DFABCEA1AC0CBAC00D21C43 /* MapViewController.swift in Sources */,
 				46ADA5DF1B67CBAA0077D01D /* UdacityLogin.swift in Sources */,
 				461338071B73820D00F4CB7F /* Helpers.swift in Sources */,
@@ -292,7 +281,6 @@
 				4647E2921B6BBF5700CD8481 /* AllMapLocations.swift in Sources */,
 				466ED59E1B6E90E3008049C9 /* LocationListViewController.swift in Sources */,
 				46E1D7B91B78D3C40082D8A0 /* AddLocationViewController.swift in Sources */,
-				46A90F9D1B7B849D00755DCF /* screenHelper.swift in Sources */,
 				4647E2941B6BC35C00CD8481 /* ListViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

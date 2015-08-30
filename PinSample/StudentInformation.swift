@@ -24,8 +24,6 @@ struct StudentInformation {
     var createdAt : String
     var updatedAt : String
     
-    
-    
     init(mapDict: [String : AnyObject]) {
         self.firstName = mapDict["firstName"] as! String
         self.lastName = mapDict["lastName"] as! String

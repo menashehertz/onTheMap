@@ -34,15 +34,11 @@ class AddLocationViewController: UIViewController {
 
     /* Screen Actions */
     @IBAction func findLocation(sender: AnyObject) {
-        println("findLocation button was pressed")
         processLocationController()
     }
     @IBAction func submit(sender: AnyObject) {
-        println("submit button was pressed")
         postLocation()
         self.dismissViewControllerAnimated(true, completion: nil)
-//        screenView2.hidden = true
-//        screenView1.hidden = false
     }
     
     @IBAction func goBack(sender: AnyObject) {
@@ -72,9 +68,7 @@ class AddLocationViewController: UIViewController {
     
     // Populates the map with pin spot
     func populateMapWithLocation(coords: CLLocationCoordinate2D) {
-        
-        println("in build map")
-        
+
         // Setup what is showing in the map
         var span = MKCoordinateSpanMake(0.0002, 0.0002)
         var region = MKCoordinateRegionMake(coords, span)
@@ -110,7 +104,6 @@ class AddLocationViewController: UIViewController {
     }
     
     func moveToSecondScreen() {
-        println("Moving to next screen")
         dispatch_async(dispatch_get_main_queue()) {
             self.screenView1.hidden = true
             self.screenView2.hidden = false
@@ -118,15 +111,11 @@ class AddLocationViewController: UIViewController {
     }
     
     func moveToFirstScreen() {
-        println("Moving to first screen")
         dispatch_async(dispatch_get_main_queue()) {
             self.screenView1.hidden = false
             self.screenView2.hidden = true
         }
     }
-    
-    
-    
     
     
     override func viewDidLoad() {
@@ -141,15 +130,5 @@ class AddLocationViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    
-    /*
-    // MARK: - Navigation
-    
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-    // Get the new view controller using segue.destinationViewController.
-    // Pass the selected object to the new view controller.
-    }
-    */
     
 }

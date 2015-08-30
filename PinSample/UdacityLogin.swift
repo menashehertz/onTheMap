@@ -13,13 +13,11 @@ class UdacityLogin {
     static let oneSession = UdacityLogin()
     
     var myUdacityUser : UdacityUser!
-    /* Literals needed to login*/
+    /* Literals needed to login */
     let baseURLSecureStringLit = "https://www.udacity.com/api/session"
     let rootLoginDictLit = "udacity"
     let userNameLit = "username"
     let passwordLit = "password"
-
-    var counter = 0
     
     var tester = ""
 
@@ -66,7 +64,6 @@ class UdacityLogin {
     Takes a closure to will do another step if the login is complete
     */
     func loginToUdacity(userId: String, passWord: String, completionHandler: (success: Bool, errorString: String, studentKey: String) -> Void) {
-        println("button clicked from udacity class")
         
         // a dictionary whos first key "udacity" contains other dictionaries
         var loginStringDictionary = [rootLoginDictLit: [:]]
@@ -113,10 +110,7 @@ class UdacityLogin {
                     if let dict = parsedResult["account"] as? [String : AnyObject] {
                         let registered = dict["registered"] as! Bool
                         if registered {
-                            println("registered - succesfully logged into Udacity, next step is to login to parse and get the map locations")
                             UdacityUser.oneSession.populatewithDict(parsedResult as! [String:[String:AnyObject]])
-                            // self.myUdacityUser = UdacityUser(dict: parsedResult as! [String:[String:AnyObject]])
-                            println("registered from singleton \(UdacityUser.oneSession.account.key)")
                             completionHandler(success: true, errorString: "No error", studentKey: UdacityUser.oneSession.account.key)
                             self.tester = UdacityUser.oneSession.account.key
                         }
@@ -134,9 +128,6 @@ class UdacityLogin {
                             println("not in dict didn't have the KEY account in the dictionary" )
                             completionHandler(success: false, errorString: "didn't have the KEY account in the dictionary" , studentKey: "")
                         }
-                        //dispatch_async(dispatch_get_main_queue()) {
-                            //            self.checkButton()
-                        //}
                     }
                 } // end of the succesful completion of the parsing
             } // end of the succesful completion of dataTask
@@ -157,7 +148,6 @@ class UdacityLogin {
             }
             let newData = data.subdataWithRange(NSMakeRange(5, data.length - 5)) /* subset response data! */
             //println(NSString(data: newData, encoding: NSUTF8StringEncoding))
-            println("got user data")
             
             
             var parsingError: NSError? = nil
@@ -171,20 +161,14 @@ class UdacityLogin {
                     UdacityUser.oneSession.lastName = lastName
                     let firstName = dict["first_name"] as! String
                     UdacityUser.oneSession.firstName = firstName
-                    println(lastName + "Udacity User")
                 }
                 completionHandler(success: true, errorString: "No error")
             }
-        
-        
-            
-            
-            
         }
         task.resume()
-
     }
 
+    
     /* Helper Functions */
 
     /**
@@ -203,28 +187,6 @@ class UdacityLogin {
         }
         return "error"
     }
-    
-//    func performAdd() {
-//        println("my login is")
-//    }
-//    
-//    func stubLoad() {
-//        // ScreenHelp.gotoMyNextScreen(self.storyboard!, myViewController: self)
-//    }
-//    
-    
-    
-    /*
-    func presentViewController() {
-    var alertController = UIAlertController(title: "Title", message: "Message", preferredStyle: .Alert)
-    let action = UIAlertAction(title: "Done", style: UIAlertActionStyle.Default, handler: {(paramAction:UIAlertAction!) in println("The Done button was tapped")})
-    
-    alertController.addAction(action)
-    
-    presentViewController(alertController!, animated: true, completion: nil)
-    }
-    */
-  
-  
+
 }
 
