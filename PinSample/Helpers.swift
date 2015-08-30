@@ -20,7 +20,7 @@ class Helpers: NSObject {
     func loadNavBar(myStoryBoard : UIStoryboard, myViewController : UIViewController)  {
         // do the right buttons
         let firstButton = UIBarButtonItem(barButtonSystemItem: .Refresh, target: myViewController, action: "performRefresh")
-        let btnImg = UIImage(named: "pin")
+        let btnImg = UIImage(named: "pin.pdf")
         let secondButton = UIBarButtonItem(image: btnImg, style: .Plain, target: myViewController, action: "performAdd")
         myViewController.navigationItem.rightBarButtonItems = [firstButton, secondButton]
         // do the left button

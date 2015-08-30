@@ -82,7 +82,7 @@
                             <outlet property="delegate" destination="QMd-R1-Hl3" id="24g-TL-WWU"/>
                         </connections>
                     </tableView>
-                    <tabBarItem key="tabBarItem" title="List" image="list" selectedImage="list" id="6NX-wb-E3Q"/>
+                    <tabBarItem key="tabBarItem" title="List" selectedImage="l" id="6NX-wb-E3Q"/>
                     <navigationItem key="navigationItem" id="MRb-xz-nox"/>
                     <connections>
                         <outlet property="studentList" destination="XEo-Zv-Dw2" id="nQD-ha-K1z"/>
@@ -432,6 +432,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="l" width="32" height="32"/>
         <image name="list" width="32" height="32"/>
         <image name="map" width="32" height="32"/>
     </resources>
