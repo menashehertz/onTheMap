@@ -144,12 +144,16 @@ class AllMapLocations {
             var myStudentInformation = StudentInformation(mapDict: dictRow)
             studentInformationCollection.append(myStudentInformation)
         }
-        studentInformationCollection.sort {
-            item1, item2 in
-            let date1 = item1.createdAt as String
-            let date2 = item2.createdAt as String
-            return date1 > date2
-        }
+        
+        studentInformationCollection.sort { $0.createdAt > $1.createdAt }
+
+//        studentInformationCollection.sort {
+//            item1, item2 in
+//            let date1 = item1.createdAt as String
+//            let date2 = item2.createdAt as String
+//            return date1 > date2
+//        }
+        println("x")
     }
 }
 
