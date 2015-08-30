@@ -14,7 +14,6 @@ class ListViewController: UIViewController {
   
     override func viewDidLoad() {
         super.viewDidLoad()
-      passedLabel.text = AllMapLocations.oneSession.testPassedInfo
       navigationItem.rightBarButtonItem = UIBarButtonItem(
         barButtonSystemItem: .Add,
         target: self,

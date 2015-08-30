@@ -15,17 +15,13 @@ class UdacityLoginViewController: UIViewController {
     @IBOutlet weak var passWordText: UITextField!
     @IBOutlet weak var testLabel: UILabel!
     
-    // var myMapLocation : MapLocation?
-    // var arrayMapLocations = [MapLocation]()
-    // var resultMapLocations = [[String : AnyObject]]()
-    
-
     let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
     let session = NSURLSession.sharedSession()
-//    var loginDicx = [UdacityLogin.oneSession.rootLoginDictLit: [:]] // a dictionary whos first key Udacity contains other dictionaries
-//    var alertController : UIAlertController?
     
-    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+    }
+
     // Mark: Login Button
     @IBAction func loginButton(sender: AnyObject) {
         println("button clicked")
@@ -39,10 +35,6 @@ class UdacityLoginViewController: UIViewController {
         }
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        testLabel.text = AllMapLocations.oneSession.testPassedInfo
-    }
     
     /* Functions */
     

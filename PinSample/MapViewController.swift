@@ -37,8 +37,12 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     let secondButton = UIBarButtonItem(image: btnImg, style: .Plain, target: self, action: "performAdd")
     navigationItem.rightBarButtonItems = [firstButton, secondButton]
     navigationItem.title = "On the Map"
-    loadLocations()
 
+    
+    
+    AllMapLocations.oneSession.loadUpStudentInformationFromDict(AllMapLocations.oneSession.resultMapLocations)
+    lloadLocations()
+    
 //    navigationItem.rightBarButtonItem = UIBarButtonItem(
 //      barButtonSystemItem: .Add,
 //      target: self,
@@ -95,6 +99,60 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         println("added map")
   }
   
+    
+    
+    
+    func lloadLocations() {
+        println("in load locations in viewcontroller")
+        // The "locations" array is an array of dictionary objects that are similar to the JSON
+        // data that you can download from parse.
+        let locations = AllMapLocations.oneSession.studentInformationCollection
+        
+        // We will create an MKPointAnnotation for each dictionary in "locations". The
+        // point annotations will be stored in this array, and then provided to the map view.
+        
+        //var annotations = [MKPointAnnotation]()
+        
+        // The "locations" array is loaded with the sample data below. We are using the dictionaries
+        // to create map annotations. This would be more stylish if the dictionaries were being
+        // used to create custom structs. Perhaps StudentLocation structs.
+        
+        for dictionary in locations {
+            
+            // Notice that the float values are being used to create CLLocationDegree values.
+            // This is a version of the Double type.
+            let lat = CLLocationDegrees(dictionary.latitude as Double)
+            let long = CLLocationDegrees(dictionary.longitude as Double)
+            
+            // The lat and long are used to create a CLLocationCoordinates2D instance.
+            let coordinate = CLLocationCoordinate2D(latitude: lat, longitude: long)
+            
+            let first = dictionary.firstName as String
+            let last = dictionary.lastName as String
+            let mediaURL = dictionary.mediaURL as String
+            
+            // Here we create the annotation and set its coordiate, title, and subtitle properties
+            var annotation = MKPointAnnotation()
+            
+            annotation.coordinate = coordinate
+            annotation.title = "\(first) \(last)"
+            annotation.subtitle = mediaURL
+            
+            // Finally we place the annotation in an array of annotations.
+            annotations.append(annotation)
+            // println("adding annotations")
+        }
+        println("about to add annotations the number of annotations is \(self.annotations.count)")
+        // When the array is complete, we add the annotations to the map.
+        dispatch_async(dispatch_get_main_queue()) {
+            self.mapView.addAnnotations(self.annotations)
+        }
+        println("added map")
+    }
+    
+
+
+    
   // MARK: - MKMapViewDelegate
   
   // Here we create a view with a "right callout accessory view". You might choose to look into other

@@ -14,9 +14,11 @@ import UIKit
 class AllMapLocations {
 
     static let oneSession = AllMapLocations()
+
     let studentData = UdacityUser.oneSession
+
     var resultMapLocations = [[String : AnyObject]]()
-    var testPassedInfo = "passed info"
+    var studentInformationCollection = [StudentInformation]()
 
     /* Literals needed to get the parse map locations */
     let baseParseURLSecureStringLit = "https://api.parse.com/1/classes/StudentLocation"
@@ -109,55 +111,47 @@ class AllMapLocations {
         task.resume()
     }
     
+    // takes a text location and converts it to a geoLocation
+    func convertAddressToMapLocation(addressText: String, completionHandler: (success: Bool, errorString: String, locationCoord: CLLocationCoordinate2D?) -> Void ) {
+        println("in build location")
+        let destination = addressText
+        //    let destination = "350 5th Avenue New York, NY"
+        CLGeocoder().geocodeAddressString(destination, completionHandler: {(placemarks: [AnyObject]!, error: NSError!) in
+            if error != nil{
+                completionHandler(success: false, errorString: "need to convert error", locationCoord: nil)
+                println("error")
+                /* Handle the error here perhaps by displaying an alert */
+            } else {
+                /* Convert the CoreLocation destination placemark to a MapKit placemark */
+                
+                let placemark = placemarks[0] as! CLPlacemark
+                //        let destinationCoordinates = placemark.location.coordinate
+                //        let coords = placemark.location.coordinate
+                
+                //self.coords = placemark.location.coordinate
+                //println(" latitude \(self.coords.latitude) and longitude is \(self.coords.longitude)" )
+                completionHandler(success: true, errorString: "No Error", locationCoord: placemark.location.coordinate)
+                //self.populateMapWithLocation(placemark.location.coordinate)
+            }
+        })
+    }
+
+    // take the dictionary and load it into array of StudentInfo structs
+    func loadUpStudentInformationFromDict(studentInfoDict:[[String : AnyObject]]) {
+        for dictRow in studentInfoDict {
+            let xx = dictRow["lastName"] as! String
+            println("from array load \(xx )")
+            var myStudentInformation = StudentInformation(mapDict: dictRow)
+            studentInformationCollection.append(myStudentInformation)
+        }
+        studentInformationCollection.sort {
+            item1, item2 in
+            let date1 = item1.createdAt as String
+            let date2 = item2.createdAt as String
+            return date1 > date2
+        }
+    }
 }
 
-//
-//    func getAllMapLocations(loadScreen : () -> Void, myStoryBoard : UIStoryboard, myViewController : UIViewController  ) {
-//
-//        println("starting func get locations. . .")
-//        let request = NSMutableURLRequest(URL: NSURL(string: "https://api.parse.com/1/classes/StudentLocation")!)
-//        request.addValue("QrX47CA9cyuGewLdsL7o5Eb8iug6Em8ye0dnAbIr", forHTTPHeaderField: "X-Parse-Application-Id")
-//        request.addValue("QuWThTdiRmTux3YaDseUSEpUKo7aBYM737yKd4gY", forHTTPHeaderField: "X-Parse-REST-API-Key")
-//        let session = NSURLSession.sharedSession()
-//        let task = session.dataTaskWithRequest(request) { data, response, error in
-//            if error != nil { // Handle error...
-//                println("error")
-//                return
-//            }
-//            var parsingError: NSError? = nil
-//            let parsedResult = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.AllowFragments, error: &parsingError) as! NSDictionary
-//            if let dict = parsedResult["results"] as? [NSDictionary] {
-//                self.resultMapLocations = dict as! [[String : AnyObject]]
-//                AllMapLocations.oneSession.resultMapLocations = dict as! [[String : AnyObject]]
-//                println("number is \(dict.count)")
-//                let xx : String
-//                for dictEach in dict {
-//                    if let lastName = dictEach.objectForKey("lastName") as? String {
-//                        //            println(lastName)
-//                        //            self.myMapLocation = MapLocation(mapDict: dictEach as! [String : AnyObject])
-//                        //            println(self.myMapLocation!.mediaURL!)
-//                        //            self.arrayMapLocations.append(self.myMapLocation!)
-//                        //            println("append done")
-//                    }
-//                }
-//                println("finished for loop")
-//                //loadScreen()
-//
-//                if myViewController is UdacityLoginViewController {
-//                    println("it is udacity****************************************")
-//                    ScreenHelp.gotoMyNextScreen(myStoryBoard, myViewController: myViewController)
-//                }
-//
-//                if myViewController is MapViewController {
-//                    println("it is no udacity****************************************")
-//                    if let vc = myViewController as? MapViewController {
-//                        vc.loadLocations()
-//                    }
-//                }
-//            }
-//            //println(NSString(data: data, encoding: NSUTF8StringEncoding))
-//        }
-//        task.resume()
-//    }
-//
+
 

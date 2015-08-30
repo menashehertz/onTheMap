@@ -8,7 +8,7 @@
 
 import Foundation
 
-class MapLocation {
+struct MapLocation {
   var firstName : String?
   var lastName : String?
   var latitude : Float?
