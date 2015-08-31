@@ -65,7 +65,20 @@ class LocationListViewController: UITableViewController {
         UIApplication.sharedApplication().openURL(NSURL(string: studentInfo.mediaURL)!)
     }
     
-    
+    func displayError(errorString: String?) {
+        if let errorString = errorString {
+            dispatch_async(dispatch_get_main_queue()) {
+                let alertController = UIAlertController(title: "Error", message: errorString, preferredStyle: .Alert)
+                let action = UIAlertAction(title: "Done", style: UIAlertActionStyle.Default, handler: {(paramAction:UIAlertAction!) in println("The Done button was tapped - " + paramAction.title)})
+                
+                alertController.addAction(action)
+                
+                self.presentViewController(alertController, animated: true, completion: nil)
+                
+            }
+        }
+    }
+
     func performLeave() {
         dismissViewControllerAnimated(true, completion: nil)
     }
@@ -76,14 +89,14 @@ class LocationListViewController: UITableViewController {
     
     func performRefresh(){
         println("Refresh new method got called")
-        AllMapLocations.oneSession.studentInformationCollection.removeAll(keepCapacity: false)
 
         AllMapLocations.oneSession.getAllMapLocationsNew()  { (success, errorString) in
             if success {
+                AllMapLocations.oneSession.studentInformationCollection.removeAll(keepCapacity: false)
                 AllMapLocations.oneSession.loadUpStudentInformationFromDict(AllMapLocations.oneSession.resultMapLocations)
                 self.studentList.reloadData()
             } else {
-                //self.displayError(errorString)
+               self.displayError(errorString)
             }
         }
     }

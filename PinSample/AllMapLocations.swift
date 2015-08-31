@@ -86,7 +86,7 @@ class AllMapLocations {
                     // TODO: - The whole dictionary is being saved, should it be split up now? put in error processing with completion handler
                     if let dict = parsedResult["results"] as? [NSDictionary] {
                         self.resultMapLocations = dict as! [[String : AnyObject]]
-                        let xx : String
+                        // let xx : String
                         for dictEach in dict {
                             if let lastName = dictEach.objectForKey("lastName") as? String {
                             }

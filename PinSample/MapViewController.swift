@@ -108,6 +108,20 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         }
     }
     
+    func displayError(errorString: String?) {
+        if let errorString = errorString {
+            dispatch_async(dispatch_get_main_queue()) {
+                let alertController = UIAlertController(title: "Error", message: errorString, preferredStyle: .Alert)
+                let action = UIAlertAction(title: "Done", style: UIAlertActionStyle.Default, handler: {(paramAction:UIAlertAction!) in println("The Done button was tapped - " + paramAction.title)})
+                
+                alertController.addAction(action)
+                
+                self.presentViewController(alertController, animated: true, completion: nil)
+                
+            }
+        }
+    }
+
     
     // MARK: - * * * *   Helper Functions
 
@@ -131,17 +145,15 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     
     func performRefresh(){
         println("Refresh new method got called")
-        AllMapLocations.oneSession.studentInformationCollection.removeAll(keepCapacity: false)
-        self.mapView.removeAnnotations(annotations)
-        for var i=0; i<10000; i++ {
-            var a = "a"
-        }
+
         AllMapLocations.oneSession.getAllMapLocationsNew()  { (success, errorString) in
             if success {
                 AllMapLocations.oneSession.loadUpStudentInformationFromDict(AllMapLocations.oneSession.resultMapLocations)
+                AllMapLocations.oneSession.studentInformationCollection.removeAll(keepCapacity: false)
+                self.mapView.removeAnnotations(self.annotations)
                 self.loadLocations()
             } else {
-                //self.displayError(errorString)
+                self.displayError(errorString)
             }
         }
     }

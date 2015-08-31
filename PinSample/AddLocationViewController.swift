@@ -30,10 +30,12 @@ class AddLocationViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var screenView2: UIView!
     @IBOutlet weak var linkText: UITextField!
     @IBOutlet weak var activityInd: UIActivityIndicatorView!
+    @IBOutlet weak var topThird: UIView!
     
 
     /* Screen Actions */
     @IBAction func findLocation(sender: AnyObject) {
+       activityInd.startAnimating()
         processLocationController()
     }
     @IBAction func submit(sender: AnyObject) {
@@ -57,9 +59,6 @@ class AddLocationViewController: UIViewController, UITextFieldDelegate {
     }
     
     func processLocationController(){
-
-        activityInd.startAnimating()
-        
         AllMapLocations.oneSession.convertAddressToMapLocation(address.text) { (success, errorString, locationCoord) in
             if success {
                 self.populateMapWithLocation(locationCoord!)

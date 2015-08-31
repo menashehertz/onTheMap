@@ -115,14 +115,14 @@
                                     <action selector="loginButton:" destination="xi2-br-jsz" eventType="touchUpInside" id="Hx4-t1-0En"/>
                                 </connections>
                             </button>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder=" Email" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="f0A-H8-xjW">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="menashehertz@gmail.com" placeholder=" Email" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="f0A-H8-xjW">
                                 <rect key="frame" x="16" y="231" width="288" height="30"/>
                                 <color key="backgroundColor" red="0.99607843137254903" green="0.72549019607843135" blue="0.50980392156862742" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Bsi-iy-8Ng">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="simcha3485" placeholder="Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Bsi-iy-8Ng">
                                 <rect key="frame" x="16" y="269" width="288" height="30"/>
                                 <color key="backgroundColor" red="0.99607843137254903" green="0.72549019607843135" blue="0.50980392156862742" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -210,9 +210,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="x9e-4K-CoJ">
-                                <rect key="frame" x="150" y="274" width="20" height="20"/>
-                            </activityIndicatorView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gtP-gA-kJf" userLabel="ScreenView1">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <subviews>
@@ -272,6 +269,9 @@
                                                     <outlet property="delegate" destination="Oql-mD-Fsa" id="8Op-Nl-5dC"/>
                                                 </connections>
                                             </textField>
+                                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="x9e-4K-CoJ">
+                                                <rect key="frame" x="150" y="147" width="20" height="20"/>
+                                            </activityIndicatorView>
                                         </subviews>
                                         <color key="backgroundColor" red="0.50304911139999997" green="0.69481284720000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
@@ -430,6 +430,7 @@
                         <outlet property="map" destination="JnB-e0-29H" id="LfW-Sc-cWK"/>
                         <outlet property="screenView1" destination="gtP-gA-kJf" id="ByZ-oF-iIy"/>
                         <outlet property="screenView2" destination="bMy-Dk-cPl" id="eqm-9J-hu8"/>
+                        <outlet property="topThird" destination="bIR-py-XVR" id="6Bw-rq-GZN"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="O8P-qx-fQQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
