@@ -9,7 +9,7 @@
 import UIKit
 import MapKit
 
-class AddLocationViewController: UIViewController {
+class AddLocationViewController: UIViewController, UITextFieldDelegate {
     
     // TODO:
     /*
@@ -38,7 +38,6 @@ class AddLocationViewController: UIViewController {
     }
     @IBAction func submit(sender: AnyObject) {
         postLocation()
-        self.dismissViewControllerAnimated(true, completion: nil)
     }
     
     @IBAction func goBack(sender: AnyObject) {
@@ -47,6 +46,16 @@ class AddLocationViewController: UIViewController {
     
 
     /* Functions */
+    
+    override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
+        self.view.endEditing(true)
+    }
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return false
+    }
+    
     func processLocationController(){
 
         activityInd.startAnimating()
@@ -86,7 +95,14 @@ class AddLocationViewController: UIViewController {
     
     func postLocation(){
         // Put map location into the parse database
-        AllMapLocations.oneSession.postLocation(coords, address: address.text, linkText: linkText.text)
+        AllMapLocations.oneSession.postLocation(coords, address: address.text, linkText: linkText.text) { (success, errorString) in
+            if success {
+                self.dismissViewControllerAnimated(true, completion: nil)
+            } else {
+                self.displayError(errorString)
+            }
+        }
+
     }
     
     

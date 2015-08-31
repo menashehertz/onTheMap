@@ -94,6 +94,7 @@ class UdacityLogin {
         let session = NSURLSession.sharedSession()
         let task = session.dataTaskWithRequest(request) { data, response, downloadError in
             if let error = downloadError {
+                completionHandler(success: false, errorString: "Could not connect to Udacity" , studentKey: "")
                 println("Could not complete the request \(error)")
             }
             else {

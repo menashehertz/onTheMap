@@ -33,7 +33,7 @@ class AllMapLocations {
     /*  Functions to work with parse data  */
     
     // Post an entry into the Parse map locarions database
-    func postLocation(cords: CLLocationCoordinate2D, address: String, linkText: String){
+    func postLocation(cords: CLLocationCoordinate2D, address: String, linkText: String, completionHandler: (success: Bool, errorString: String) -> Void){
 
         // prepare the data
         let lat: Double = cords.latitude
@@ -54,9 +54,12 @@ class AllMapLocations {
         let task = session.dataTaskWithRequest(request) { data, response, error in
             if error != nil { // Handle error…
                 println("it was an error")
+                completionHandler(success: false, errorString: "There was an error posting the location")
                 return
             }
             println(NSString(data: data, encoding: NSUTF8StringEncoding))
+            completionHandler(success: true, errorString: "No error")
+
         }
         task.resume()
     }
@@ -123,7 +126,7 @@ class AllMapLocations {
             studentInformationCollection.append(myStudentInformation)
         }
         
-        studentInformationCollection.sort { $0.createdAt > $1.createdAt }
+        studentInformationCollection.sort { $0.updatedAt > $1.updatedAt }
 
 //        studentInformationCollection.sort {
 //            item1, item2 in
