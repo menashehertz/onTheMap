@@ -35,7 +35,10 @@ class AddLocationViewController: UIViewController, UITextFieldDelegate {
 
     /* Screen Actions */
     @IBAction func findLocation(sender: AnyObject) {
-       activityInd.startAnimating()
+        /* when I comment out processLocationController() (right below it),  I see the activity indicator animating
+        * so I think it is working
+        */
+        activityInd.startAnimating()
         processLocationController()
     }
     @IBAction func submit(sender: AnyObject) {
