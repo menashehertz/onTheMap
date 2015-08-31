@@ -66,14 +66,14 @@ class AddLocationViewController: UIViewController, UITextFieldDelegate {
             if success {
                 self.populateMapWithLocation(locationCoord!)
                 self.coords = locationCoord!
+                self.activityInd.stopAnimating()
                 self.moveToSecondScreen()
             } else {
                 println("from get location" + errorString)
+                self.activityInd.stopAnimating()
                 self.displayError("Error converting a location to a map coordinate")
             }
         }
-        
-        activityInd.stopAnimating()
     }
     
     
