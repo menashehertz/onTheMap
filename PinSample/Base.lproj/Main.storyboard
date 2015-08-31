@@ -115,19 +115,12 @@
                                     <action selector="loginButton:" destination="xi2-br-jsz" eventType="touchUpInside" id="Hx4-t1-0En"/>
                                 </connections>
                             </button>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="menashehertz@gmail.com" placeholder=" Email" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="f0A-H8-xjW">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder=" Email" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="f0A-H8-xjW">
                                 <rect key="frame" x="16" y="231" width="288" height="30"/>
                                 <color key="backgroundColor" red="0.99607843137254903" green="0.72549019607843135" blue="0.50980392156862742" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="simcha3485" placeholder="Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Bsi-iy-8Ng">
-                                <rect key="frame" x="16" y="269" width="288" height="30"/>
-                                <color key="backgroundColor" red="0.99607843137254903" green="0.72549019607843135" blue="0.50980392156862742" alpha="1" colorSpace="calibratedRGB"/>
-                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Login to Udacity" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mfV-lh-F5R">
                                 <rect key="frame" x="16" y="188" width="288" height="21"/>
@@ -135,6 +128,13 @@
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Bsi-iy-8Ng">
+                                <rect key="frame" x="16" y="269" width="288" height="30"/>
+                                <color key="backgroundColor" red="0.99607843137254903" green="0.72549019607843135" blue="0.50980392156862742" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" red="0.99215686274509807" green="0.49803921568627452" blue="0.050980392156862744" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>

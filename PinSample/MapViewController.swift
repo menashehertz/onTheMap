@@ -148,8 +148,8 @@ class MapViewController: UIViewController, MKMapViewDelegate {
 
         AllMapLocations.oneSession.getAllMapLocationsNew()  { (success, errorString) in
             if success {
-                AllMapLocations.oneSession.loadUpStudentInformationFromDict(AllMapLocations.oneSession.resultMapLocations)
                 AllMapLocations.oneSession.studentInformationCollection.removeAll(keepCapacity: false)
+                AllMapLocations.oneSession.loadUpStudentInformationFromDict(AllMapLocations.oneSession.resultMapLocations)
                 self.mapView.removeAnnotations(self.annotations)
                 self.loadLocations()
             } else {
